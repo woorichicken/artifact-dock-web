@@ -1,14 +1,12 @@
 # CLAUDE.md
 
-`oss-landing-template` 저장소의 작업 지침. `AGENTS.md`는 이 파일만 가리킨다.
+`artifact-dock-web` 저장소의 작업 지침. `AGENTS.md`는 이 파일만 가리킨다.
 
 ## 이 저장소가 하는 일
 
-오픈소스 프로젝트 홈페이지 **템플릿**이다. 이걸 복제해서 `site.config.ts` 만 고치면
-새 프로젝트의 홈페이지가 된다. 붙이는 방법은 [README.md](README.md)가 정본이고,
-이 파일은 **고칠 때의 규칙**만 다룬다.
-
-복제 절차 자체는 `create-opensource` 스킬이 담당한다.
+[Artifact Dock](https://github.com/woorichicken/artifact-dock)(Chrome 확장 + CLI, macOS)의 홈페이지다.
+`oss-landing-template` 을 복제해 만들었고, 내용은 `site.config.ts` 에 있다. 운영 주소는 https://artifact-dock.solhun.com.
+제품 코드는 원본 저장소에 있다. 사이트에 쓰는 기능 설명은 **원본의 현재 동작으로 확인한 것만** 쓴다.
 
 ## 깨지 말아야 할 것
 
@@ -67,3 +65,23 @@ pnpm typecheck
 pnpm build
 pnpm db:generate && pnpm db:migrate
 ```
+
+## 데모 영상
+
+`scripts/demo-scenario.mjs` 가 원본 저장소의 커밋된 확장·호스트·CLI 를 격리 프로필·격리 소켓으로 헤드리스 Chromium 에 올려 조작한다.
+사용자 Chrome 과 실제 `dock.sock` 은 건드리지 않고 창도 안 뜬다. 무대 페이지는 `scripts/demo/` 이고, 터미널은 진짜 셸, 패널은 진짜 `sidepanel.html`, 탭 목록은 `chrome.tabs` 응답이다.
+헤드리스 녹화에는 브라우저 탭 줄이 찍히지 않는다 — 그래서 무대가 탭 상태를 API 값으로 보여 준다. 절차는 [scripts/README.md](scripts/README.md).
+
+## 피드백 위젯 (feedback-kit)
+
+- 부착 타입: **global** (홈페이지 방문자 전원). 배선은 `components/feedback/FeedbackWidget.tsx`, 마운트는 `app/layout.tsx`.
+- 수집처: 라쏘런 프로젝트 「Artifact Dock 홈페이지 (artifact-dock-web)」 · 소스 `artifact-dock-web`. 허용 호스트: `artifact-dock.solhun.com`, `artifact-dock-web.vercel.app`, `localhost:3232`
+  (호스트를 늘리면 라쏘런 소스 `dp update-source-hosts` 도 같이 — 안 맞으면 버튼은 뜨는데 보내면 403).
+- 환경변수 `NEXT_PUBLIC_DP_FEEDBACK_URL` / `NEXT_PUBLIC_DP_FEEDBACK_KEY` — 빌드 때 인라인되므로 Vercel production·preview 에 둘 다 넣는다.
+  비면 위젯이 조용히 사라진다(배포 뒤 번들에서 수집 URL 문자열을 센다).
+
+## 배포
+
+- GitHub `woorichicken/artifact-dock-web`(public) → Vercel 개인 계정 `gyeonghunjeong-7007s-projects/artifact-dock-web`, production branch `main`. main push 가 곧 운영 배포다.
+- 도메인 `artifact-dock.solhun.com` (`*.solhun.com` 이 이미 Vercel 로 간다 — Cloudflare DNS 는 건드리지 않는다).
+- env: `NEXT_PUBLIC_DP_FEEDBACK_URL`·`_KEY`(production·preview, `--no-sensitive`), `DATABASE_URL`·`ADMIN_API_KEY`(sensitive, production·preview). DB 는 Neon `artifact-dock-web`(`lucky-art-20758568`, aws-us-east-1, org `org-small-rain-98874291`). 원본 값은 1Password `lightsoft` 계정 Employee 볼트.

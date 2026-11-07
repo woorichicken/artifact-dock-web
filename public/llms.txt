@@ -1,36 +1,35 @@
-# CLI Manager (Solhun)
+# Artifact Dock
 
-> Manage Claude Code, Codex CLI, and Gemini CLI from a single macOS desktop dashboard.
+> Chrome extension and CLI for macOS. Agent-generated HTML opens in a background tab, one tab per document, listed in a side panel, so your focus stays where you were typing.
 
-A desktop application for macOS that centralizes management of multiple CLI agents. Switch between Claude Code, Codex CLI, and Gemini CLI, organize projects in one workspace, rename agents to define their roles, and instantly switch between VS Code, Cursor, and other editors. All data is processed locally with Apple notarization for security.
+`open` and `open -g` bring all of Chrome forward. Artifact Dock's CLI (`artifact-open`) asks the extension over a local socket and native messaging, and the extension creates the tab with `tabs.create({active:false})`. If the extension is not connected, the CLI exits with an error and does not open the file.
 
-## Core Features
+## Install
 
-- [Agent Management](https://solhun.com): Manage Claude Code, Codex CLI, and Gemini CLI in a unified dashboard
-- [Project Organization](https://solhun.com): Organize all projects in one centralized workspace
-- [Agent Customization](https://solhun.com): Rename CLI agents to define their specific roles and purposes
-- [Editor Switching](https://solhun.com): Switch instantly between VS Code, Cursor, and other code editors
+- Run: `git clone https://github.com/woorichicken/artifact-dock.git && cd artifact-dock && ./install.sh`
+- Add the extension: [Chrome Web Store](https://chromewebstore.google.com/detail/artifact-dock/nfifnjdpmjacfelfapgeibnnbkokceim), or load this folder unpacked and allow access to file URLs
+- Check: `artifact-open --status`
 
-## Documentation
+## Usage
 
-- [Getting Started](https://solhun.com/docs): Installation guide and initial setup instructions
-- [Pricing](https://solhun.com/pricing): Free core features with optional premium capabilities
+- `artifact-open report.html`: open in the background; reloads the existing tab for the same file
+- `artifact-open a.html b.html`: open several
 
-## Resources
+## Pages
 
-- [Gallery](https://solhun.com/gallery): Screenshots and visual demonstrations of the application
-- [Changelog](https://solhun.com/changelog): Version history and feature updates
-- [FAQ](https://solhun.com/#faq): Frequently asked questions about CLI agent management
+- [Home](https://artifact-dock.solhun.com): what it does, demo, install
+- [Docs](https://artifact-dock.solhun.com/docs): install steps and guides
+- [Changelog](https://artifact-dock.solhun.com/changelog): release notes
+- [Roadmap](https://artifact-dock.solhun.com/roadmap): what is planned
+- [Feedback](https://artifact-dock.solhun.com/feedback): report a problem or suggest a feature
 
-## Technical Details
+## Source
 
-- Platform: macOS Desktop Application
-- Supported CLI Tools: Claude Code, Gemini CLI, Codex CLI, and custom CLI tools
-- Data Privacy: All data processed locally, no external data transmission
-- Security: Apple notarized application
-- Price: Free core features
+- [GitHub repository](https://github.com/woorichicken/artifact-dock)
+- [README](https://github.com/woorichicken/artifact-dock/blob/main/README.md)
+- [Privacy policy](https://github.com/woorichicken/artifact-dock/blob/main/PRIVACY.md)
 
-## Optional
+## Limits
 
-- Windows Support: Coming soon
-- Linux Support: Not yet on roadmap
+- macOS only
+- MIT license

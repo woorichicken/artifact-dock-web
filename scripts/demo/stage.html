@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>This tab — you were reading it</title>
+<link rel="stylesheet" href="stage.css" />
+</head>
+<body>
+  <main class="left">
+    <section class="term" aria-label="Terminal">
+      <header class="term-bar"><i></i><i></i><i></i><span>zsh — reports</span></header>
+      <div id="log" class="term-log"></div>
+      <label class="term-line"><span class="ps1">reports %</span><input id="cmd" aria-label="command" autocomplete="off" spellcheck="false" /></label>
+    </section>
+    <section class="live">
+      <div class="card tabs">
+        <h2>Chrome tabs <small>live from chrome.tabs</small></h2>
+        <p class="count"><b id="count">0</b> <span id="countLabel">tabs</span> · active: <span id="active"></span></p>
+        <ul id="tabs"></ul>
+      </div>
+      <div class="card doc">
+        <h2>Document tab <small id="docMeta">not open yet</small></h2>
+        <div class="thumb"><img id="thumb" alt="" hidden /></div>
+      </div>
+    </section>
+  </main>
+  <aside class="panel">
+    <h2>Artifact Dock side panel</h2>
+    <iframe id="panel" title="Artifact Dock side panel" src="../src/sidepanel.html"></iframe>
+  </aside>
+  <footer id="caption" class="caption"></footer>
+  <script type="module" src="stage.js"></script>
+</body>
+</html>

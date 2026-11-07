@@ -16,8 +16,8 @@
  * 별 개수가 그대로 떴다(실측). 채우기 전 상태는 배지가 비어 있는 게 맞다.
  */
 export const repo = {
-  owner: "your-github-org", // TODO(create-opensource)
-  name: "your-repo-name", // TODO(create-opensource)
+  owner: "woorichicken",
+  name: "artifact-dock",
   branch: "main",
 } as const;
 
@@ -25,22 +25,22 @@ export const repoUrl = `https://github.com/${repo.owner}/${repo.name}`;
 
 export const site = {
   /** 제품/프로젝트 이름. 헤더·OG·JSON-LD 에 그대로 쓴다. */
-  name: "YourProject", // TODO(create-opensource)
+  name: "Artifact Dock",
   /** 한 줄. 검색 결과와 OG 설명의 첫 문장이 된다. */
-  tagline: "One line that says what this does.", // TODO(create-opensource)
+  tagline: "Agent-generated HTML opens in a background tab, one tab per document, listed in a side panel.",
   /** 두세 문장. meta description 으로 나간다(155자 안쪽 권장). */
   description:
-    "A short description of what the project does and who it is for.", // TODO(create-opensource)
+    "Chrome extension and CLI for macOS. Agent-generated HTML opens in background tabs, one tab per document, listed in a side panel. Your focus stays put.",
   /** 배포 도메인. metadataBase·sitemap·canonical 의 기준. */
-  url: "https://example.com", // TODO(create-opensource)
+  url: "https://artifact-dock.solhun.com",
   lang: "en",
   locale: "en_US",
   logo: "/logo.svg",
   /** OG 이미지(1200x630). 없으면 데모 이미지를 쓴다. */
-  ogImage: "/demo-placeholder.jpg",
+  ogImage: "/og.png",
   license: "MIT",
   /** 검색 키워드. 과하게 넣지 않는다 — 5~12개. */
-  keywords: ["open source", "developer tools"], // TODO(create-opensource)
+  keywords: ["chrome extension", "side panel", "background tab", "claude code", "codex", "html report", "tab management", "macos", "cli", "open source"],
 } as const;
 
 // ─────────────────────────────────────────────────────────────
@@ -57,23 +57,24 @@ export const install: {
   verifyLabel?: string;
 } = {
   options: [
-    { label: "npm", command: "npm install your-package" }, // TODO(create-opensource)
-    { label: "pnpm", command: "pnpm add your-package" },
-    { label: "yarn", command: "yarn add your-package" },
-    { label: "bun", command: "bun add your-package" },
+    { label: "bash", command: "git clone https://github.com/woorichicken/artifact-dock.git && cd artifact-dock && ./install.sh" },
+    { label: "CLI only", command: "git clone https://github.com/woorichicken/artifact-dock.git && cd artifact-dock && ./install.sh --cli-only" },
   ],
-  verify: undefined, // TODO(create-opensource)
-  verifyLabel: undefined, // TODO(create-opensource)
+  verify: "artifact-open --status",
+  verifyLabel: "Add the extension from the Chrome Web Store, then check the connection:",
 };
 
 /** 30초 안에 뭔가 돌아가는 최소 예제. 히어로 다음에 온다. */
 export const quickStart: { language: string; code: string } = {
-  language: "tsx",
-  // TODO(create-opensource)
-  code: `import { doThing } from "your-package";
+  language: "bash",
+  code: `# Opens in a background tab
+artifact-open report.html
 
-const result = await doThing({ input: "hello" });
-console.log(result);`,
+# Several at once
+artifact-open a.html b.html
+
+# File changed? The same tab reloads
+artifact-open report.html`,
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -81,20 +82,20 @@ console.log(result);`,
 // ─────────────────────────────────────────────────────────────
 export const hero = {
   /** 로고 옆 작은 배지. 없애려면 null. */
-  badge: { text: "MIT Licensed · v0.1.0" }, // TODO(create-opensource)
+  badge: { text: "MIT · macOS · Chrome extension + CLI" },
   /** 배열의 각 원소가 한 줄. 2줄이 가장 안정적이다. */
-  title: ["Your headline here,", "in two lines"], // TODO(create-opensource)
+  title: ["Agent reports open", "without stealing focus"],
   subtitle:
-    "One or two sentences explaining the value. Keep it concrete — say what it removes, not what it enables.", // TODO(create-opensource)
+    "Stop Chrome jumping over your terminal every time an agent writes HTML. Each document gets one background tab and one row in a side panel.",
   primaryCta: { label: "Get started", href: "#install" },
   secondaryCta: { label: "GitHub", href: repoUrl },
   /** 히어로 스크롤 애니메이션 안에 들어갈 데모. mp4 또는 이미지. */
   media: {
-    type: "image" as "image" | "video",
-    src: "/demo-placeholder.jpg", // TODO(create-opensource)
+    type: "video" as "image" | "video",
+    src: "/demo.mp4",
     /** 영상이 뜨기 전·자동재생이 막혔을 때 보이는 정지 화면. 영상이면 넣는다. */
-    poster: undefined as string | undefined, // TODO(create-opensource)
-    alt: "Product demo",
+    poster: "/demo-poster.png" as string | undefined,
+    alt: "A terminal runs artifact-open: each report lands in a background tab and a side panel row, a rewritten report reloads the same tab, and closed documents reopen from the list",
   },
 } as const;
 
@@ -110,29 +111,28 @@ export type Feature = {
 
 export const featuresIntro = {
   badge: "Key Features",
-  heading: "What it does", // TODO(create-opensource)
-  body: "One or two lines framing the features below.", // TODO(create-opensource)
+  heading: "Quiet tabs, one list",
+  body: "`open` brings all of Chrome forward, even with -g. A CLI can't prevent that, but an extension can, so Artifact Dock is both.",
 };
 
 export const features: Feature[] = [
-  // TODO(create-opensource) — 3개가 기본. 2개도 4개도 된다.
   {
-    title: "First capability",
-    body: "What it does and why it matters, in two sentences at most.",
-    link: { label: "Read the docs →", href: "/docs" },
-    media: { type: "image", src: "/demo-placeholder.jpg", alt: "Feature one" },
+    title: "Opens behind you",
+    body: "artifact-open asks the extension over a local socket, and the extension creates a tab without activating it. You keep typing in the terminal and the tab you were on stays active.",
+    link: { label: "Why a CLI alone can't do it →", href: `${repoUrl}#why-a-cli-alone-cant-do-it-measured` },
+    media: { type: "video", src: "/feature-background.mp4", alt: "artifact-open adds a background tab while the active tab stays the same" },
   },
   {
-    title: "Second capability",
-    body: "Keep each of these about one thing. If it needs a paragraph, it is two features.",
-    link: { label: "See the changelog →", href: "/changelog" },
-    media: { type: "image", src: "/demo-placeholder.jpg", alt: "Feature two" },
+    title: "Same file, same tab",
+    body: "When an agent rewrites a report, run the same command. Artifact Dock finds the tab by file path and reloads it, so copies never pile up. It can also match by file name or title.",
+    link: { label: "Matching rules →", href: `${repoUrl}#when-the-same-document-doesnt-merge` },
+    media: { type: "video", src: "/feature-reload.mp4", alt: "After the file changes, artifact-open prints reused, the tab count stays the same, and the report shows the new content" },
   },
   {
-    title: "Third capability",
-    body: "The one that closes the sale. Usually the thing competitors do not have.",
-    link: { label: "Roadmap →", href: "/roadmap" },
-    media: { type: "image", src: "/demo-placeholder.jpg", alt: "Feature three" },
+    title: "A list, not a full tab bar",
+    body: "Every document sits in the side panel, newest first, searchable by title, folder, and path. Close the tabs and the list stays, so any document comes back with one click.",
+    link: { label: "The side panel →", href: `${repoUrl}#the-side-panel-list` },
+    media: { type: "video", src: "/feature-list.mp4", alt: "Searching the side panel, then closing tabs while the documents stay listed under Recently closed" },
   },
 ];
 
@@ -140,20 +140,44 @@ export const features: Feature[] = [
 // FAQ — JSON-LD(FAQPage)로도 나가니 실제 질문만 쓴다
 // ─────────────────────────────────────────────────────────────
 export const faq: { question: string; answer: string }[] = [
-  // TODO(create-opensource)
   {
-    question: `What license is ${"YourProject"} under?`,
+    question: "Why not just use open -g?",
+    answer:
+      "Neither open -g nor AppleScript's make new tab stops it: Chrome brings itself forward. The only path that leaves focus alone is the extension creating the tab with tabs.create({active:false}).",
+  },
+  {
+    question: "Which platforms does it support?",
+    answer:
+      "macOS only. The socket path and the handoff of non-HTML files to /usr/bin/open assume macOS. The installer registers the native host for Chrome, Chrome Canary, Chromium, Brave, and Edge.",
+  },
+  {
+    question: "What happens if the extension isn't connected?",
+    answer:
+      "artifact-open exits with an error and does not open the file. It never falls back to AppleScript or macOS open, because that would pull Chrome forward again.",
+  },
+  {
+    question: "Do I still need install.sh with the Chrome Web Store version?",
+    answer:
+      "Yes. An extension can't install local programs, so the CLI and native host always come from install.sh. Both the Web Store and source builds are allowed to connect.",
+  },
+  {
+    question: "Can my agent set it up for me?",
+    answer:
+      "Yes. Copy the setup prompt from the setup tab or the robot button in the side panel and paste it into Claude Code or Codex. The agent runs the install, fixes PATH, and checks that a test page opens in the background.",
+  },
+  {
+    question: "Does it send my data anywhere?",
+    answer:
+      "No. The extension makes no network requests of its own and has no analytics. Tab titles, settings, and the document list stay in your browser, and the local host only checks whether a listed file still exists.",
+  },
+  {
+    question: "What license is Artifact Dock under?",
     answer:
       "MIT. You can use it commercially, modify it, and redistribute it, as long as you keep the copyright notice.",
   },
   {
     question: "How do I report a bug?",
-    answer: `Open an issue at ${repoUrl}/issues. Include the version, your environment, and a minimal reproduction.`,
-  },
-  {
-    question: "Can I contribute?",
-    answer:
-      "Yes. Read CONTRIBUTING.md first, then open a pull request against the main branch.",
+    answer: `Run ./doctor.sh first, then open an issue at ${repoUrl}/issues with the result and the version shown at the bottom of the side panel.`,
   },
 ];
 
@@ -171,7 +195,7 @@ export const sponsor = {
 // 마지막 CTA
 // ─────────────────────────────────────────────────────────────
 export const cta = {
-  heading: "Start in one command", // TODO(create-opensource)
+  heading: "Keep your place",
   body: "No signup. No account. Read the source before you run it.",
 };
 
@@ -210,7 +234,6 @@ export const footer = {
       links: [
         { label: "GitHub", href: repoUrl },
         { label: "Issues", href: `${repoUrl}/issues` },
-        { label: "Discussions", href: `${repoUrl}/discussions` },
         { label: "Feedback", href: "/feedback" },
       ],
     },
@@ -218,8 +241,7 @@ export const footer = {
       title: "Legal",
       links: [
         { label: "License", href: `${repoUrl}/blob/${repo.branch}/LICENSE` },
-        { label: "Contributing", href: `${repoUrl}/blob/${repo.branch}/CONTRIBUTING.md` },
-        { label: "Code of Conduct", href: `${repoUrl}/blob/${repo.branch}/CODE_OF_CONDUCT.md` },
+        { label: "Privacy", href: `${repoUrl}/blob/${repo.branch}/PRIVACY.md` },
       ],
     },
   ],
@@ -238,25 +260,34 @@ export const verification: Record<string, string> = {
 // ─────────────────────────────────────────────────────────────
 export const docs = {
   heading: "Documentation",
-  body: "Install it, run the example, then read the guides below.", // TODO(create-opensource)
+  body: "Install the CLI and the extension, open your first report, then read the guides below.",
   /** 외부 문서 사이트가 있으면 채운다. 없으면 null → 버튼을 그리지 않는다. */
   externalUrl: null as string | null,
   guides: [
-    // TODO(create-opensource)
     {
       title: "Getting started",
-      description: "Install, configure, and run your first call.",
-      href: `${repoUrl}/blob/${repo.branch}/README.md`,
+      description: "Install, load the extension, and check the connection.",
+      href: `${repoUrl}#install`,
     },
     {
-      title: "API reference",
-      description: "Every exported function, with types and examples.",
-      href: `${repoUrl}/blob/${repo.branch}/docs/api.md`,
+      title: "Chrome Web Store",
+      description: "The published extension. You still run install.sh for the CLI and native host.",
+      href: "https://chromewebstore.google.com/detail/artifact-dock/nfifnjdpmjacfelfapgeibnnbkokceim",
     },
     {
-      title: "Contributing",
-      description: "How to set up the repo, run tests, and open a pull request.",
-      href: `${repoUrl}/blob/${repo.branch}/CONTRIBUTING.md`,
+      title: "Settings",
+      description: "Matching rules, tab groups, tab limits, and automatic cleanup.",
+      href: `${repoUrl}#settings-extension-icon--`,
+    },
+    {
+      title: "Troubleshooting",
+      description: "doctor.sh checks the host registration, process, socket, CLI, and Chrome in one go.",
+      href: `${repoUrl}#troubleshooting`,
+    },
+    {
+      title: "Privacy policy",
+      description: "What the extension reads and where it stays.",
+      href: `${repoUrl}/blob/${repo.branch}/PRIVACY.md`,
     },
   ],
 }

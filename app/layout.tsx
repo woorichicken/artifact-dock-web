@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Instrument_Serif } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { GoogleAnalytics } from "@/components/google-analytics"
+import FeedbackWidget from "@/components/feedback/FeedbackWidget"
 import { repo, repoUrl, site, verification } from "@/site.config"
 import "./globals.css"
 
@@ -27,7 +28,6 @@ const instrumentSerif = Instrument_Serif({
  */
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  icons: { icon: site.logo, apple: site.logo },
   title: {
     default: `${site.name} — ${site.tagline}`,
     template: `%s | ${site.name}`,
@@ -80,6 +80,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Analytics />
         <GoogleAnalytics />
+        {/* 피드백 위젯 — 부착 타입 global. 환경변수가 비면 렌더하지 않는다 */}
+        <FeedbackWidget />
       </body>
     </html>
   )

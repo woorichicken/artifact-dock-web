@@ -1,8 +1,7 @@
 # Backlog
 
-Found while building agent-swap-web (2026-11-05). Not fixed in the template yet.
+Found while building this site. Each item has evidence and a trigger for looking again.
 
-| # | Problem | Evidence | Fix idea |
+| # | Problem | Evidence | Trigger |
 |---|---|---|---|
-| 1 | `public/llms.txt` still describes the original site (CLI Manager / Solhun) and is not marked `TODO(create-opensource)` | `head -3 public/llms.txt` → "# CLI Manager (Solhun)" | Generate it from `site.config.ts` (route handler like `robots.ts`) or add a TODO marker |
-| 4 | Widget label is Korean ("피드백") on English sites — feedback-kit-web has no label/locale prop | `grep 피드백 node_modules/@solhun/feedback-kit-web/dist/index.js` | Belongs to woorichicken/feedback-kit: add a `labels`/`locale` prop |
+| 1 | The feedback button says 「피드백」 on an English site. feedback-kit-web has no label or locale prop | `grep 피드백 node_modules/@solhun/feedback-kit-web/dist/index.js` | feedback-kit adds a `labels` or `locale` prop. Belongs to `woorichicken/feedback-kit` |
