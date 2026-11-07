@@ -73,7 +73,7 @@ artifact-open report.html
 # Several at once
 artifact-open a.html b.html
 
-# File changed? The same tab reloads
+# File changed? Same tab reloads
 artifact-open report.html`,
 };
 
@@ -112,7 +112,7 @@ export type Feature = {
 export const featuresIntro = {
   badge: "Key Features",
   heading: "Quiet tabs, one list",
-  body: "`open` brings all of Chrome forward, even with -g. A CLI can't prevent that, but an extension can, so Artifact Dock is both.",
+  body: "The open command brings all of Chrome forward, even with -g. A CLI can't prevent that, but an extension can, so Artifact Dock is both.",
 };
 
 export const features: Feature[] = [
