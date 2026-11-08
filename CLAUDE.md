@@ -72,6 +72,9 @@ pnpm db:generate && pnpm db:migrate
 사용자 Chrome 과 실제 `dock.sock` 은 건드리지 않고 창도 안 뜬다. 무대 페이지는 `scripts/demo/` 이고, 터미널은 진짜 셸, 패널은 진짜 `sidepanel.html`, 탭 목록은 `chrome.tabs` 응답이다.
 헤드리스 녹화에는 브라우저 탭 줄이 찍히지 않는다 — 그래서 무대가 탭 상태를 API 값으로 보여 준다. 절차는 [scripts/README.md](scripts/README.md).
 
+**히어로(`public/demo.mp4`·`demo-poster.png`)는 2026-11-08 부터 brand 저장소 작품 `brand-kit/videos/artifact-dock-climdemo` r1 의 16:9 판이다**(같은 헤드리스 무대 방식 + 그라디언트 틀). 무음판을 1920px·crf22(약 1MB)로 다시 인코딩했다.
+이 저장소의 `scripts/demo-scenario.mjs` 는 기능 칸 클립 셋(`feature-*.mp4`)을 만든다. 히어로를 다시 찍으려면 그 작품의 `CLAUDE.md` 를 따른다.
+
 ## 피드백 위젯 (feedback-kit)
 
 - 부착 타입: **global** (홈페이지 방문자 전원). 배선은 `components/feedback/FeedbackWidget.tsx`, 마운트는 `app/layout.tsx`.

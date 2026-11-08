@@ -9,6 +9,8 @@
 
 ## Recording the demo
 
+The hero video (`public/demo.mp4`) now comes from a separate production, `brand-kit/videos/artifact-dock-climdemo` in the brand repository: the same headless approach with a framed 16:9 layout. The script below still produces the three feature clips.
+
 Nothing here touches your own Chrome or `dock.sock`. The script copies the committed extension, host, and CLI from an Artifact Dock checkout, then runs them in headless Chromium with a separate profile and socket. No window appears.
 
 ```bash
