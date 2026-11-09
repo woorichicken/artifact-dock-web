@@ -95,7 +95,7 @@ export const hero = {
     src: "/demo.mp4",
     /** 영상이 뜨기 전·자동재생이 막혔을 때 보이는 정지 화면. 영상이면 넣는다. */
     poster: "/demo-poster.png" as string | undefined,
-    alt: "A terminal runs artifact-open: each report lands in a background tab and a side panel row, a rewritten report reloads the same tab, and closed documents reopen from the list",
+    alt: "A terminal window and a Chrome window side by side: a test run writes a report, artifact-open puts it in a background tab and a side panel row, a second run reloads the same tab, and closed reports reopen from the list",
   },
 } as const;
 
