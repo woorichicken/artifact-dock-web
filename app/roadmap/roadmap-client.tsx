@@ -38,7 +38,8 @@ export function RoadmapClient({ roadmaps }: RoadmapClientProps) {
 
   return (
     <div className="space-y-12">
-      {/* In Progress Section */}
+      {/* In Progress Section — 항목이 없으면 제목만 덩그러니 남지 않게 숨긴다 */}
+      {inProgress.length > 0 && (
       <section>
         <div className="flex items-center gap-2 mb-6">
           <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
@@ -74,6 +75,7 @@ export function RoadmapClient({ roadmaps }: RoadmapClientProps) {
             ))}
         </div>
       </section>
+      )}
 
       {/* Planned Section */}
       {planned.length > 0 && (
